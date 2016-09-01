@@ -36,13 +36,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     mText = getViewById(R.id.tv_text);
     mProgressBar = getViewById(R.id.progressBar);
     mMainPresenter = new MainPresenter(this);
-    //延迟2s
-    new Handler().postDelayed(new Runnable() {
-      @Override
-      public void run() {
-        mMainPresenter.loadData();
-      }
-    }, 2000);
+    mMainPresenter.loadData();
   }
 
   public <T extends View> T getViewById(int id) {

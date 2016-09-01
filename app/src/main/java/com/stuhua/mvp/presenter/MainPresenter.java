@@ -39,5 +39,6 @@ public class MainPresenter implements Presenter<IMainView>, IMainPresenter {
 
   public void loadData() {
     mMainModel.loadData();
+    mMainView.showProgress();
   }
 }
