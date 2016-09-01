@@ -12,7 +12,7 @@ public class MainModel {
     this.iMainPresenter = iMainPresenter;
   }
 
-  public void loadData() {
+  public void loadData()  {
     UserModelBean bean=new UserModelBean("stuhua","21","man");
     iMainPresenter.loadDataSuccess(bean);
   }

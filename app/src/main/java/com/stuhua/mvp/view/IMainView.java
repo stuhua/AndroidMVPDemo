@@ -5,7 +5,7 @@ import com.stuhua.mvp.model.UserModelBean;
 /**
  * Created by llh on 2016/9/1.
  */
-public interface MainView {
+public interface IMainView {
   void showData(UserModelBean bean);
 
   void showProgress();
