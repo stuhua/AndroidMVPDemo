@@ -4,9 +4,10 @@
   android:layout_height="match_parent"
   android:orientation="vertical">
 
-  <include layout="@layout/common_tool_bar" />
-
-  <include layout="@layout/common_drawer" />
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:text="Liulh"
+    android:textSize="24sp" />
 </LinearLayout>
-
-

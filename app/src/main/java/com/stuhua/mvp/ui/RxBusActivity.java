@@ -33,12 +33,12 @@ public class RxBusActivity extends AppCompatActivity {
   }
 
   private void rxBusPost() {
-    findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+ /*   findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         RxBus.getInstance().post(new UserModelBean("5", "3", "2"));
       }
-    });
+    });*/
   }
 
   public void addSubscription(Subscription subscription) {
