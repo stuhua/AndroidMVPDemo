@@ -25,21 +25,22 @@ public class MainModel {
 
   public void loadData() {
     ApiStores apiStores = AppClient.retrofit().create(ApiStores.class);
-    Observable<WeatherJson> observable = apiStores.getWeather("101010100");
-    observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<WeatherJson>() {
+//    Observable<WeatherJson> observable = apiStores.getWeather("101010100");
+    Observable<ZhiHuJson> observable = apiStores.getContent();
+    observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<ZhiHuJson>() {
       @Override
       public void onCompleted() {
       }
 
       @Override
       public void onError(Throwable e) {
+        iMainPresenter.loadDataFailure();
       }
 
       @Override
-      public void onNext(WeatherJson weatherJson) {
-        UserModelBean bean = new UserModelBean(weatherJson.getWeatherinfo().getCity(), weatherJson.getWeatherinfo().getTemp(), weatherJson.getWeatherinfo().getTime());
+      public void onNext(ZhiHuJson zhiHuJson) {
+        UserModelBean bean = new UserModelBean(zhiHuJson.getPosts().get(0).getDate(), zhiHuJson.getPosts().get(0).getCount(), zhiHuJson.getPosts().get(0).getExcerpt());
         iMainPresenter.loadDataSuccess(bean);
-
       }
     });
 
