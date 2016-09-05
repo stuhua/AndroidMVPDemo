@@ -65,10 +65,10 @@ public class MainActivity extends AppCompatActivity implements IMainView, View.O
     mDrawerToggle.syncState();
     mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-    Fragment mFragment = new ContentFragment();
+    Fragment fragment = new ContentFragment();
     FragmentManager fragmentManager = getSupportFragmentManager();
     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-    fragmentTransaction.replace(R.id.containerViewId, mFragment);
+    fragmentTransaction.replace(R.id.containerViewId, fragment);
     fragmentTransaction.commit();
 
     TextView text1 = (TextView) findViewById(R.id.text1);

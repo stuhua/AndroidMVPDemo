@@ -30,7 +30,7 @@ public class ZhihuAnswerActivity extends AppCompatActivity {
   public static final String URL_MAIN = "https://www.zhihu.com/";
 
   private Toolbar mToolbar;
-  private TextView mAuthorNameTV,mVoteTV;
+  private TextView mAuthorNameTV, mVoteTV;
   private WebView mWebView;
   private Handler mHandler;
   private Document mDoc;
@@ -64,9 +64,9 @@ public class ZhihuAnswerActivity extends AppCompatActivity {
       }
     });
 
-    mAuthorNameTV=getViewById(R.id.tv_author_name);
+    mAuthorNameTV = getViewById(R.id.tv_author_name);
     mAuthorNameTV.setText(mAuthorName);
-    mVoteTV=getViewById(R.id.tv_vote);
+    mVoteTV = getViewById(R.id.tv_vote);
     mVoteTV.setText(mUerVote);
   }
 
@@ -127,6 +127,9 @@ public class ZhihuAnswerActivity extends AppCompatActivity {
    * @return
    */
   private String imgReplace(String html) {
+// 因为 HTML 文档中会有很多例如链接、图片以及所引用的外部脚本、css 文件等，而第三个名为
+// baseURL 的参数的意思就是当 HTML 文档使用相对路径方式引用外部文件时，jsoup 会自动为这些 URL 加上一个前缀，也就是这个 baseURL。
+//Document doc = Jsoup.parse(input,"UTF-8","http://www.oschina.net/");
     Document doc = Jsoup.parse(html);
     Elements imgs = doc.getElementsByTag("img");
     for (int i = 0; i < imgs.size(); i++) {
@@ -167,7 +170,7 @@ public class ZhihuAnswerActivity extends AppCompatActivity {
     @Override
     protected String doInBackground(String... strings) {
       try {
-        mDoc = Jsoup.connect(URL_MAIN+mQuestionAnswerId).get();
+        mDoc = Jsoup.connect(URL_MAIN + mQuestionAnswerId).get();
       } catch (IOException e) {
         e.printStackTrace();
       }
