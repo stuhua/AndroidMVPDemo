@@ -20,7 +20,7 @@ public class AppClient {
 
   public static Retrofit retrofit() {
     if (mRetrofit == null) {
-      mRetrofit = new Retrofit.Builder().baseUrl("http://www.weather.com.cn/")
+      mRetrofit = new Retrofit.Builder().baseUrl("http://api.kanzhihu.com/")
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .build();

@@ -2,6 +2,7 @@ package com.stuhua.retrofit;
 
 import com.stuhua.mvp.model.WeatherJson;
 import com.stuhua.mvp.model.ZhiHuJson;
+import com.stuhua.mvp.model.ZhihuContentJson;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -15,6 +16,6 @@ import rx.Observable;
 public interface ApiStores {/*
   @GET("adat/sk/{cityId}.html")
   Observable<WeatherJson> getWeather(@Path("cityId") String cityId);*/
-  @GET("http://api.kanzhihu.com/getposts")
-  Observable<ZhiHuJson> getContent();
+  @GET("getpostanswers/{time}/recent")
+  Observable<ZhihuContentJson> getContent(@Path("time") String time);
 }

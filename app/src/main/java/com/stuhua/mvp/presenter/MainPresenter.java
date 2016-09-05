@@ -2,6 +2,7 @@ package com.stuhua.mvp.presenter;
 
 import com.stuhua.mvp.model.MainModel;
 import com.stuhua.mvp.model.UserModelBean;
+import com.stuhua.mvp.model.ZhihuContentJson;
 import com.stuhua.mvp.view.IMainView;
 
 /**
@@ -17,9 +18,9 @@ public class MainPresenter implements Presenter<IMainView>, IMainPresenter {
   }
 
   @Override
-  public void loadDataSuccess(UserModelBean bean) {
+  public void loadDataSuccess(ZhihuContentJson zhihuContentJson) {
     mMainView.dismissProgress();
-    mMainView.showData(bean);
+    mMainView.showData(zhihuContentJson);
   }
 
   @Override
@@ -37,8 +38,8 @@ public class MainPresenter implements Presenter<IMainView>, IMainPresenter {
     this.mMainView = null;
   }
 
-  public void loadData() {
-    mMainModel.loadData();
+  public void loadData(String date) {
+    mMainModel.loadData(date);
     mMainView.showProgress();
   }
 }

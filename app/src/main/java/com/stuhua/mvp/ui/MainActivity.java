@@ -1,8 +1,6 @@
 package com.stuhua.mvp.ui;
 
-import android.content.Intent;
 import android.graphics.Color;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -21,49 +19,22 @@ import android.widget.Toast;
 
 import com.stuhua.mvp.R;
 import com.stuhua.mvp.model.UserModelBean;
+import com.stuhua.mvp.model.ZhihuContentJson;
 import com.stuhua.mvp.presenter.MainPresenter;
-import com.stuhua.mvp.ui.fragment.Fragment1;
+import com.stuhua.mvp.ui.fragment.ContentFragment;
 import com.stuhua.mvp.view.IMainView;
-import com.stuhua.rxjava.RxBus;
 
 public class MainActivity extends AppCompatActivity implements IMainView, View.OnClickListener {
-  private TextView mText;
-  private Button mbtn;
   private MainPresenter mMainPresenter;
   private ProgressBar mProgressBar;
-  private String TAG = "MainActivity:";
   private Toolbar mToolbar;
   private DrawerLayout mDrawerLayout;
   private LinearLayout mContentLayout;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    initView();
-    ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.open, R.string.close);
-    mDrawerToggle.syncState();
-    mDrawerLayout.setDrawerListener(mDrawerToggle);
+  private TextView mText;
+  private Button mbtn;
 
-    Fragment mFragment = new Fragment1();
-    FragmentManager fragmentManager = getSupportFragmentManager();
-    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-    fragmentTransaction.add(R.id.containerViewId, mFragment);
-    fragmentTransaction.commit();
-
-    TextView text1 = (TextView) findViewById(R.id.text1);
-    TextView text2 = (TextView) findViewById(R.id.text2);
-
-    text1.setOnClickListener(this);
-    text2.setOnClickListener(this);
-  }
-
-
-  @Override
-  protected void onDestroy() {
-    mMainPresenter.detachView();
-    super.onDestroy();
-  }
+  private String TAG = "MainActivity:";
 
   private void initView() {
     mProgressBar = getViewById(R.id.progressBar);
@@ -85,14 +56,44 @@ public class MainActivity extends AppCompatActivity implements IMainView, View.O
     return (T) findViewById(id);
   }
 
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    initView();
+    ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.open, R.string.close);
+    mDrawerToggle.syncState();
+    mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+    Fragment mFragment = new ContentFragment();
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    fragmentTransaction.replace(R.id.containerViewId, mFragment);
+    fragmentTransaction.commit();
+
+    TextView text1 = (TextView) findViewById(R.id.text1);
+    TextView text2 = (TextView) findViewById(R.id.text2);
+
+    text1.setOnClickListener(this);
+    text2.setOnClickListener(this);
+  }
+
+
+  @Override
+  protected void onDestroy() {
+    mMainPresenter.detachView();
+    super.onDestroy();
+  }
+
+
   /**
    * 在界面上操作数据
    *
-   * @param bean
+   * @param json
    */
   @Override
-  public void showData(UserModelBean bean) {
-//    mText.setText(bean.getName() + "\n" + bean.getAge() + "\n" + bean.getSex());
+  public void showData(ZhihuContentJson json) {
+
   }
 
   @Override

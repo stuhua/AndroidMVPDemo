@@ -1,5 +1,7 @@
 package com.stuhua.mvp.model;
 
+import android.util.Log;
+
 import com.stuhua.mvp.presenter.IMainPresenter;
 import com.stuhua.retrofit.ApiStores;
 import com.stuhua.retrofit.AppClient;
@@ -18,16 +20,18 @@ import rx.schedulers.Schedulers;
  */
 public class MainModel {
   IMainPresenter iMainPresenter;
+  private String TAG="MainModel:";
 
   public MainModel(IMainPresenter iMainPresenter) {
     this.iMainPresenter = iMainPresenter;
   }
 
-  public void loadData() {
+  public void loadData(String date) {
     ApiStores apiStores = AppClient.retrofit().create(ApiStores.class);
 //    Observable<WeatherJson> observable = apiStores.getWeather("101010100");
-    Observable<ZhiHuJson> observable = apiStores.getContent();
-    observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<ZhiHuJson>() {
+    Observable<ZhihuContentJson> observable = apiStores.getContent(date);
+    Log.d(TAG,"date:"+date);
+    observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<ZhihuContentJson>() {
       @Override
       public void onCompleted() {
       }
@@ -38,9 +42,9 @@ public class MainModel {
       }
 
       @Override
-      public void onNext(ZhiHuJson zhiHuJson) {
-        UserModelBean bean = new UserModelBean(zhiHuJson.getPosts().get(0).getDate(), zhiHuJson.getPosts().get(0).getCount(), zhiHuJson.getPosts().get(0).getExcerpt());
-        iMainPresenter.loadDataSuccess(bean);
+      public void onNext(ZhihuContentJson zhiHuContentJson) {
+//        UserModelBean bean = new UserModelBean(zhiHuJson.getPosts().get(0).getDate(), zhiHuJson.getPosts().get(0).getCount(), zhiHuJson.getPosts().get(0).getExcerpt());
+        iMainPresenter.loadDataSuccess(zhiHuContentJson);
       }
     });
 
