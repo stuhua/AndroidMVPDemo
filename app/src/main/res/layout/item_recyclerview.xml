@@ -42,7 +42,7 @@
       android:textSize="16sp" />
 
     <ImageView
-      android:id="@+id/avatar"
+      android:id="@+id/iv_avatar"
       android:layout_width="56dp"
       android:layout_height="56dp"
       android:layout_alignParentRight="true"
@@ -54,9 +54,9 @@
       android:id="@+id/vote"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_alignLeft="@id/avatar"
-      android:layout_alignRight="@id/avatar"
-      android:layout_below="@id/avatar"
+      android:layout_alignLeft="@id/iv_avatar"
+      android:layout_alignRight="@id/iv_avatar"
+      android:layout_below="@id/iv_avatar"
       android:layout_marginTop="4dp"
       android:background="@color/blue_light"
       android:gravity="center"

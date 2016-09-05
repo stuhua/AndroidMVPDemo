@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_marginRight="16dp"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:layout_marginLeft="48dp"
+  android:layout_marginTop="?attr/actionBarSize"
+  android:fitsSystemWindows="true"
+  android:scaleType="centerCrop"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <ImageView
+    android:id="@+id/iv_avatar"
+    android:layout_width="56dp"
+    android:layout_height="56dp" />
+
+  <TextView
+    android:text="1111"
+    android:id="@+id/tv_author_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:textSize="16sp" />
+
+  <TextView
+    android:text="222"
+    android:id="@+id/tv_vote"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="16sp"
+    android:layout_below="@+id/tv_author_name"
+    android:layout_alignParentRight="true"
+/>
+</RelativeLayout>

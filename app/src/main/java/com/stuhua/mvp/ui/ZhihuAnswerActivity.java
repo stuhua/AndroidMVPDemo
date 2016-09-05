@@ -11,8 +11,10 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.stuhua.mvp.R;
 import com.stuhua.mvp.adapter.ContentAdapter;
 
@@ -34,18 +36,19 @@ public class ZhihuAnswerActivity extends AppCompatActivity {
   private WebView mWebView;
   private Handler mHandler;
   private Document mDoc;
+  private ImageView mAvatarIV;
 
   private String mQuestionAnswerId;
   private String mContent;
   private String TAG = "ZhihuAnswerActivity:";
-  private String mUserAvatar;
+  private String mAvatar;
   private String mUerVote;
   private String mQuestionTitle;
   private String mAuthorName;
 
   public void init() {
     mQuestionAnswerId = getIntent().getStringExtra(ContentAdapter.sQUESTION_ANSWER_ID);
-    mUserAvatar = getIntent().getStringExtra(ContentAdapter.sUSER_AVATAR);
+    mAvatar = getIntent().getStringExtra(ContentAdapter.sUSER_AVATAR);
     mUerVote = getIntent().getStringExtra(ContentAdapter.sUSER_VOTE);
     mQuestionTitle = getIntent().getStringExtra(ContentAdapter.sQUESTION);
     mAuthorName = getIntent().getStringExtra(ContentAdapter.sAUTHOR_NAME);
@@ -68,6 +71,9 @@ public class ZhihuAnswerActivity extends AppCompatActivity {
     mAuthorNameTV.setText(mAuthorName);
     mVoteTV = getViewById(R.id.tv_vote);
     mVoteTV.setText(mUerVote);
+
+    mAvatarIV = getViewById(R.id.iv_avatar);
+    Picasso.with(this).load(mAvatar).into(mAvatarIV);
   }
 
   private void webViewInit() {

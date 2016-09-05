@@ -8,8 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
+import com.squareup.picasso.Picasso;
 import com.stuhua.mvp.R;
 import com.stuhua.mvp.model.ZhihuContentJson;
 import com.stuhua.mvp.ui.ZhihuAnswerActivity;
@@ -23,6 +26,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentH
   public static final String sUSER_VOTE = "uservate";
   public static final String sQUESTION = "qustiontitle";
   public static final String sAUTHOR_NAME="author_name";
+  public static final String sAvatar="avatar";
 
   private LayoutInflater mLayoutInflater;
   private Context mContext;
@@ -45,6 +49,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentH
     holder.title.setText(mZhihuContentJson.getAnswers().get(position).getTitle());
     holder.body.setText(mZhihuContentJson.getAnswers().get(position).getSummary());
     holder.vote.setText(mZhihuContentJson.getAnswers().get(position).getVote());
+    Picasso.with(mContext).load(mZhihuContentJson.getAnswers().get(position).getAvatar()).into(holder.avatar);
   }
 
   @Override
@@ -56,6 +61,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentH
     TextView title;
     TextView body;
     TextView vote;
+    ImageView avatar;
     //    SimpleDraweeView avatar;
 //    CardView answerCard;
     public ContentHolder(final View itemView) {
@@ -63,6 +69,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentH
       title = (TextView) itemView.findViewById(R.id.title);
       body = (TextView) itemView.findViewById(R.id.body);
       vote = (TextView) itemView.findViewById(R.id.vote);
+      avatar= (ImageView) itemView.findViewById(R.id.iv_avatar);
       itemView.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
